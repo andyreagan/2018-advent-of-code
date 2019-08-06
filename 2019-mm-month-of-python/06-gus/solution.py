@@ -2,7 +2,7 @@
 # My solution for Gus's problem
 #
 # 2019-08-06
-# Andy Reagan
+# Andy Reagan and Peter Schubert
 import sys
 
 
