@@ -1,7 +1,7 @@
 import sys
 
 
-def collatz_f(unsigned int i):
+cdef int collatz_f(unsigned int i):
     if i % 2 == 0:
         i = i / 2
     else:
@@ -9,12 +9,16 @@ def collatz_f(unsigned int i):
     return i
 
 
+def collatz(unsigned int i):
+    return collatz_f(i)
+
+
 def get_path_length_cache(unsigned int i, cache):
     cdef unsigned int l = 0
     cdef list new_elements = []
     while i > (len(cache)-1) or cache[i] == 0:
         new_elements.append(i)
-        i = collatz_f(i)
+        i = collatz(i)
         l += 1
     l += cache[i]
     return (l, new_elements)
