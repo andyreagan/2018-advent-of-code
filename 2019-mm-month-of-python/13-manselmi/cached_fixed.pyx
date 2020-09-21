@@ -1,8 +1,7 @@
 import sys
-# import sklearn
 
 
-def collatz_f(unsigned int i):
+cdef collatz_f(unsigned int i):
     if i % 2 == 0:
         i = i / 2
     else:
@@ -10,7 +9,7 @@ def collatz_f(unsigned int i):
     return i
 
 
-def get_path_length_cache(unsigned int i, cache):
+cdef get_path_length_cache(unsigned int i, cache):
     cdef unsigned int l = 0
     cdef list new_elements = []
     while i > (len(cache)-1) or cache[i] == 0:
@@ -21,7 +20,7 @@ def get_path_length_cache(unsigned int i, cache):
     return (l, new_elements)
 
 
-def main(unsigned int n):
+cpdef main(unsigned int n):
     '''Cache the paths are already known.
 
     Use 1-based indexing for convience (ignore the first entry).'''
@@ -41,7 +40,3 @@ def main(unsigned int n):
                     all_path_lengths[x] = l-j
     m = max(all_path_lengths)
     print(m, all_path_lengths.index(m))
-
-
-if __name__ == '__main__':
-    main(int(sys.argv[1]))
